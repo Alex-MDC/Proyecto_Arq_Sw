@@ -1,6 +1,6 @@
 #comentar principios que se esten siguiendo
 
-
+#OC: open close principle  -- adding new behaviour with code
 def get_pref_key(preferences):
     #validar 
     if( len(preferences) != 3 ):

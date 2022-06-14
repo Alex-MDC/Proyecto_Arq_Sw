@@ -62,8 +62,8 @@ def recommend_with_false_rating(pref_key):
         #list of everything in col 0
         #        print(rows[0][1])
     col = [x[0] for x in rows]
-    print(col)
-    print(pref_key)
+   # print(col)
+    print("Magic key: ",pref_key)
     pref_key = str(pref_key)
     #finding the first 10 / top ten movies from the category match
     result_counter =0

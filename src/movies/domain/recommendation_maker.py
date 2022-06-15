@@ -3,9 +3,9 @@
 #programming to interfaces -- we are making the recommendation making its own class
 #Single responsibility: this is the only class in charge of creating the recommendations!
 
-from movies import movie_repository
+from service import movie_repository
 
-filename = "/src/movies/movie_results.csv"
+filename = "/src/movies/domain/movie_results.csv"
 
 #DP: Simple factory, the switch is the kind of rating.
 

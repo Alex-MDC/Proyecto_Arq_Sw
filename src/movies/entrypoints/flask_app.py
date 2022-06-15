@@ -1,11 +1,7 @@
 from flask import Flask, request, redirect, url_for, render_template
-from movies import models
-from movies import pref_key_generator
-from movies import recommendation_maker
-
-# clean architecture: coupling is mostly related to the database, which currently is basically a local filem which would be updated with the webscraping
-#modules are being created to carry the functionalities of the system to avoid higher coupling. for example preference key generation has its own module
-# and also the recommendation creations has a kind of simple factory. the "switch" of the movie recommendation is the rating option as stated in the requirements.
+from adapters import models
+from domain import pref_key_generator
+from domain import recommendation_maker
 
 app = Flask(__name__)
 models.start_mappers()

@@ -3,6 +3,10 @@ from movies import models
 from movies import pref_key_generator
 from movies import recommendation_maker
 
+# clean architecture: coupling is mostly related to the database, which currently is basically a local filem which would be updated with the webscraping
+#modules are being created to carry the functionalities of the system to avoid higher coupling. for example preference key generation has its own module
+# and also the recommendation creations has a kind of simple factory. the "switch" of the movie recommendation is the rating option as stated in the requirements.
+
 app = Flask(__name__)
 models.start_mappers()
 
@@ -11,19 +15,12 @@ models.start_mappers()
 def hello_world():
     return "Hello World!", 200
 
-
-#registrar usuario (recibe info de registro)
-#aqui se eligen las cat de movies
-@app.route("/register", methods=["GET"])
-def register():
-    return "Welcome to IMDB app", 200
-
 @app.route("/")
 def index():
     return render_template("login.html")
 
 #regresa user_id, recibe credenciales de usuario (username / password)
-@app.route("/login", methods=["POST"])
+@app.route("/recommendations", methods=["POST"])
 def login():
     #return "<H1> You have logged in <H1>", 200
     uname=request.form['uname']  
@@ -36,36 +33,13 @@ def login():
     movie_recommendations =[]
     #rating parameter
     rating = request.form.get("rating")
+    #ISP: We are segregating the ways in which to create the recommendations
+    #LSP: pluggable types are the ways to do ratings
     if rating:
         print("rating is true/ on")
         movie_recommendations = recommendation_maker.recommend_with_true_rating(preference_key)
     else:
         print("rating is off")
         movie_recommendations = recommendation_maker.recommend_with_false_rating(preference_key)
-
-    
-    
-    
-
-    
-
-    
     
     return "<H3> Welcome %s, with magic key %d </H3> <br> Your recommendations are: %s" %(uname,preference_key,movie_recommendations)
-
-
- 
-  
-
-
-@app.route("/logout", methods=["GET"])
-def logout():
-    return "You have logged out", 200
-
-#retornar las recomendaciones (recibe usuario y parametro rating- true/false-)
-@app.route("/recommendations", methods=["GET"])
-def recommendations():
-    return "These are your recommendations", 200
-
-#duda general
-#corroborar si los usuarios deben guardarse y recuperarse de la DB

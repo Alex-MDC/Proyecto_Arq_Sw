@@ -7,13 +7,17 @@ import csv
 
 filename = "/src/movies/movie_results.csv"
 
+#DP:  Python interfaces are not necesary as it has multiple inheritance, but this class works as a sort of simple factory for recommendations
+
+
 # initializing the titles and rows list
 fields = []
 rows = []
-resultados =[]
+
 
 # recommend_with_true_rating
 def recommend_with_true_rating(pref_key):
+    resultados =[]
     with open(filename, 'r') as csvfile:
         #creating a csv reader object
         csvreader = csv.reader(csvfile)
@@ -48,6 +52,7 @@ def recommend_with_true_rating(pref_key):
    # print(fields)
 
 def recommend_with_false_rating(pref_key):
+    resultados =[]
     with open(filename, 'r') as csvfile:
         #creating a csv reader object
         csvreader = csv.reader(csvfile)

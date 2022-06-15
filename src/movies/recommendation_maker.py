@@ -3,37 +3,33 @@
 #programming to interfaces -- we are making the recommendation making its own class
 #Single responsibility: this is the only class in charge of creating the recommendations!
 
-import csv
+from movies import movie_repository
 
 filename = "/src/movies/movie_results.csv"
 
-# initializing the titles and rows list
-fields = []
-rows = []
-resultados =[]
+#DP: Simple factory, the switch is the kind of rating.
 
-# recommend_with_true_rating
-def recommend_with_true_rating(pref_key):
-    # with open(filename, 'r') as csvfile:
-    #     csvreader = csv.reader(csvfile)
-    #     fields = next(csvreader)
-    #     for row in csvreader:
-    #         rows.append(row)
+class Recommendation_Maker:
+    def __init__(self):
+        self.movie_repo = movie_repository.Movie_Repository(filename)
 
-    filteredMovies = list(filter(lambda row : int(row[0]) == pref_key, rows))
-    filteredMovies = list(map(lambda row : row[1], filteredMovies))
-    filteredMovies = filteredMovies[0:10]
-    return filteredMovies
+    # recommend_with_true_rating
+    def recommend_with_true_rating(self,pref_key):
+        #get movies from repo class, then do the filtering
 
-def recommend_with_false_rating(pref_key):
-    # with open(filename, 'r') as csvfile:
-    #     csvreader = csv.reader(csvfile)
-    #     fields = next(csvreader)
-    #     for row in csvreader:
-    #         rows.append(row)
+        filteredMovies = self.movie_repo.getWithKey(pref_key)
+        filteredMovies = list(map(lambda row : row[1], filteredMovies))
+        print("filtered movies:", filteredMovies)
+        filteredMovies = filteredMovies[0:10]
+        return filteredMovies
 
-    filteredMovies = list(filter(lambda row : int(row[0]) == pref_key, rows))
-    filteredMovies = list(map(lambda row : row[1], filteredMovies))
-    filteredMovies = filteredMovies.reverse()
-    filteredMovies = filteredMovies[0:10]
-    return filteredMovies
+    def recommend_with_false_rating(self,pref_key):
+       
+        filteredMovies = self.movie_repo.getWithKey(pref_key)
+        filteredMovies = list(map(lambda row : row[1], filteredMovies))
+        print("filtered movies before reverse:", filteredMovies)
+        filteredMovies_r = filteredMovies.copy()
+        filteredMovies_r.reverse()
+        filteredMovies_r = filteredMovies_r[0:10]
+        print("filtered movies after reverse:", filteredMovies_r)
+        return filteredMovies_r

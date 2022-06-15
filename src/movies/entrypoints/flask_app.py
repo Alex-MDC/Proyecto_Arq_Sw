@@ -28,17 +28,21 @@ def recommendations():
     prefs.append(int(request.form['preference 1']))
     prefs.append(int(request.form['preference 2']))
     prefs.append(int(request.form['preference 3']))
-    preference_key = pref_key_generator.get_pref_key(prefs)
+    key_generator = pref_key_generator.Preference_key_generator()
+    preference_key = key_generator.get_pref_key(prefs)
     movie_recommendations =[]
     #rating parameter
     rating = request.form.get("rating")
     #ISP: We are segregating the ways in which to create the recommendations
     #LSP: pluggable types are the ways to do ratings
+    recom_maker = recommendation_maker.Recommendation_Maker()
     if rating:
         print("rating is true/ on")
-        movie_recommendations = recommendation_maker.recommend_with_true_rating(preference_key)
+        #movie_recommendations = recommendation_maker.recommend_with_true_rating(preference_key)
+        movie_recommendations = recom_maker.recommend_with_true_rating(preference_key)
     else:
         print("rating is off")
-        movie_recommendations = recommendation_maker.recommend_with_false_rating(preference_key)
+        #movie_recommendations = recommendation_maker.recommend_with_false_rating(preference_key)
+        movie_recommendations = recom_maker.recommend_with_false_rating(preference_key)
 
     return "<H3> Welcome %s, with magic key %d </H3> <br> Your recommendations are: %s" %(uname,preference_key,movie_recommendations)

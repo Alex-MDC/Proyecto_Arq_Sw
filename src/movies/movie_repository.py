@@ -1,19 +1,22 @@
 from abc import ABC, abstractmethod
 import csv
 
-# class AccountingSystem(ABC):
+#DP: Strategy pattern is very similiar to this repository pattern
 
-#     @abstractmethod
-#     def create_purchase_invoice(self, purchase):
-#         pass
+class AbstractRepository(ABC):
 
-#     @abstractmethod
-#     def create_sale_invoice(self, sale):
-#         log.debug('Creating sale invoice', sale)
+    @abstractmethod
+    def begin(self):
+        pass
 
-class db():
+    @abstractmethod
+    def get(self):
+        pass
+
+class Movie_Repository(AbstractRepository):
 	def __init__(self, file):
 		self.rows = []
+		self.fields = []
 		self.filename = file
 		#"conexion a db" (se lee el archivo csv)
 		self.begin()

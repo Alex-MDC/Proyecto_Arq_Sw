@@ -15,7 +15,7 @@ DEFAULT_SESSION_FACTORY = sessionmaker(
 )
 session = DEFAULT_SESSION_FACTORY()
 
-
+#facade? hacer otro main y otra clase con las funcionalidades de armar el archivo. Separar el armar csv y bajar info de imdb
 def main():
     # Downloading imdb top 250 movie's data
 

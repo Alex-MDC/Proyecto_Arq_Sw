@@ -20,7 +20,7 @@ def main():
     # Downloading imdb top 250 movie's data
 
 #-----------------------------------------------------------------
-    # PROJECT EDITS :::: Pasar a una funcion
+    
     url = 'http://www.imdb.com/chart/top'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'lxml')

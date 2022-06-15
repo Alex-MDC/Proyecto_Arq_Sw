@@ -11,9 +11,9 @@ app = Flask(__name__)
 models.start_mappers()
 
 #homepage temporal
-@app.route("/hello", methods=["GET"])
-def hello_world():
-    return "Hello World!", 200
+@app.route("/ver", methods=["GET"])
+def ver():
+    return "Recommendation System V.1", 200
 
 @app.route("/")
 def index():
@@ -21,9 +21,8 @@ def index():
 
 #regresa user_id, recibe credenciales de usuario (username / password)
 @app.route("/recommendations", methods=["POST"])
-def login():
-    #return "<H1> You have logged in <H1>", 200
-    uname=request.form['uname']  
+def recommendations():
+    uname=request.form['uname']
     passwrd=request.form['pass']
     prefs =[]
     prefs.append(int(request.form['preference 1']))
@@ -41,5 +40,5 @@ def login():
     else:
         print("rating is off")
         movie_recommendations = recommendation_maker.recommend_with_false_rating(preference_key)
-    
+
     return "<H3> Welcome %s, with magic key %d </H3> <br> Your recommendations are: %s" %(uname,preference_key,movie_recommendations)

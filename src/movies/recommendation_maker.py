@@ -7,76 +7,33 @@ import csv
 
 filename = "/src/movies/movie_results.csv"
 
-#DP:  Python interfaces are not necesary as it has multiple inheritance, but this class works as a sort of simple factory for recommendations
-
-
 # initializing the titles and rows list
 fields = []
 rows = []
-
+resultados =[]
 
 # recommend_with_true_rating
 def recommend_with_true_rating(pref_key):
-    resultados =[]
-    with open(filename, 'r') as csvfile:
-        #creating a csv reader object
-        csvreader = csv.reader(csvfile)
-     
-        # extracting field names through first row
-        fields = next(csvreader)
- 
-        # extracting each data row one by one
-        for row in csvreader:
-            rows.append(row)
-           # print(row)
-        #list of everything in col 0
-        #        print(rows[0][1])
-    col = [x[0] for x in rows]
-    #print(col)
-    print("Magic key: ",pref_key)
-    pref_key = str(pref_key)
-    #finding the first 10 / top ten movies from the category match
-    result_counter =0
-    if pref_key in col:
-        for x in range(0,len(rows)):
-            if pref_key == rows[x][0]:
-                if result_counter < 10:
-                    print(rows[x][1])
-                    resultados.append(rows[x][1])
-                    result_counter+=1
-    return resultados
+    # with open(filename, 'r') as csvfile:
+    #     csvreader = csv.reader(csvfile)
+    #     fields = next(csvreader)
+    #     for row in csvreader:
+    #         rows.append(row)
 
-            
-
-        
-   # print(fields)
+    filteredMovies = list(filter(lambda row : int(row[0]) == pref_key, rows))
+    filteredMovies = list(map(lambda row : row[1], filteredMovies))
+    filteredMovies = filteredMovies[0:10]
+    return filteredMovies
 
 def recommend_with_false_rating(pref_key):
-    resultados =[]
-    with open(filename, 'r') as csvfile:
-        #creating a csv reader object
-        csvreader = csv.reader(csvfile)
-     
-        # extracting field names through first row
-        fields = next(csvreader)
- 
-        # extracting each data row one by one
-        for row in reversed(list(csvreader)):
-            rows.append(row)
-           # print(row)
-        #list of everything in col 0
-        #        print(rows[0][1])
-    col = [x[0] for x in rows]
-   # print(col)
-    print("Magic key: ",pref_key)
-    pref_key = str(pref_key)
-    #finding the first 10 / top ten movies from the category match
-    result_counter =0
-    if pref_key in col:
-        for x in range(0,len(rows)):
-            if pref_key == rows[x][0]:
-                if result_counter < 10:
-                    print(rows[x][1])
-                    resultados.append(rows[x][1])
-                    result_counter+=1
-    return resultados
+    # with open(filename, 'r') as csvfile:
+    #     csvreader = csv.reader(csvfile)
+    #     fields = next(csvreader)
+    #     for row in csvreader:
+    #         rows.append(row)
+
+    filteredMovies = list(filter(lambda row : int(row[0]) == pref_key, rows))
+    filteredMovies = list(map(lambda row : row[1], filteredMovies))
+    filteredMovies = filteredMovies.reverse()
+    filteredMovies = filteredMovies[0:10]
+    return filteredMovies

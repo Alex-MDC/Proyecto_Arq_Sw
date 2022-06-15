@@ -1,25 +1,63 @@
-<html>  
-   <body>  
-      <form action = "http://localhost:5005/recommendations" method = "post">  
-         <table>  
-        <tr><td>Name</td>  
-        <td><input type ="text" name ="uname"></td></tr>  
-        <tr><td>Password</td>  
-        <td><input type ="password" name ="pass"></td></tr>  
-        <td> Preference 1<input type ="number" name ="preference 1"></td></tr>  
-        <td> Preference 2<input type ="number" name ="preference 2"></td></tr> 
-        <td> Preference 3<input type ="number" name ="preference 3"></td></tr>   
-        <td> Ordenado por rating<input type="checkbox" name="rating" checked> </td>
-        <tr><td><input type = "submit"></td></tr>  
-    </table>  
-      </form>  
-   </body>  
-   <section>
-      <H3> Preference sheet --- type the number</H3>
-      <p> Comedy ... 1</p>
-      <p> Drama ... 2</p>
-      <p> Sci-fi ... 3</p>
-      <p> Romantic ... 4</p>
-      <p> Adventure ... 5</p>
-   </section>
-</html>  
+<html>
+	<body>
+		<form action="http://localhost:5005/recommendations" method="post">
+			<table>
+				<tr>
+					<td>Name</td>
+					<td><input type="text" name="uname" /></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="password" name="pass" /></td>
+				</tr>
+				<tr>
+					<td>Preference 1</td>
+					<td>
+						<select name="preference 1" id="sel1">
+							<option value="1">Comedy</option>
+							<option value="2">Drama</option>
+							<option value="3">Sci-Fi</option>
+							<option value="4">Romantic</option>
+							<option value="5">Adventure</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Preference 2</td>
+					<td>
+						<select name="preference 2" id="sel2">
+							<option value="1">Comedy</option>
+							<option value="2">Drama</option>
+							<option value="3">Sci-Fi</option>
+							<option value="4">Romantic</option>
+							<option value="5">Adventure</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Preference 3</td>
+					<td>
+						<select name="preference 3" id="sel3">
+							<option value="1">Comedy</option>
+							<option value="2">Drama</option>
+							<option value="3">Sci-Fi</option>
+							<option value="4">Romantic</option>
+							<option value="5">Adventure</option>
+						</select>
+					</td>
+				</tr>
+
+				<td>
+					Ordenado por rating<input
+						type="checkbox"
+						name="rating"
+						checked
+					/>
+				</td>
+				<tr>
+					<td><input type="submit" /></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

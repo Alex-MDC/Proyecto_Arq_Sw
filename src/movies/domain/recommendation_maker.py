@@ -13,10 +13,11 @@ class Recommendation_Maker:
     def __init__(self):
         self.movie_repo = movie_repository.Movie_Repository(filename)
 
-    # recommend_with_true_rating
+    # recommend a list of movies with the rating "flag", business logic inside each kind of recommendation
+    # returning a top 10 of movies
+    # magic key is matched to preference keys to get the filtered movies
     def recommend_with_true_rating(self,pref_key):
-        #get movies from repo class, then do the filtering
-
+      
         filteredMovies = self.movie_repo.getWithKey(pref_key)
         filteredMovies = list(map(lambda row : row[1], filteredMovies))
         print("filtered movies:", filteredMovies)

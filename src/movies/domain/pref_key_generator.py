@@ -1,5 +1,3 @@
-#comentar principios que se esten siguiendo
-
 #OC: open close principle  -- adding new behaviour with code
 #SRP: one reason to change; the business logic of the key generation
 

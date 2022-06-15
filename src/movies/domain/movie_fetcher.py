@@ -15,7 +15,6 @@ DEFAULT_SESSION_FACTORY = sessionmaker(
 )
 session = DEFAULT_SESSION_FACTORY()
 
-#facade? hacer otro main y otra clase con las funcionalidades de armar el archivo. Separar el armar csv y bajar info de imdb
 def main():
     # Downloading imdb top 250 movie's data
 
@@ -25,9 +24,6 @@ def main():
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'lxml')
     #---------------------------------------------------
-
-    # PROJECT EDITS :::::::::
-    #Builder Design Pattern ???
     movies = soup.select('td.titleColumn')
     links = [a.attrs.get('href') for a in soup.select('td.titleColumn a')]
     crew = [a.attrs.get('title') for a in soup.select('td.titleColumn a')]
